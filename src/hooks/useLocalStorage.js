@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-
+let d= 0;
 export default function useLocalStorage(key, defaultValue) {
   const [value, setValue] = useState(() => {
     const jsonValue = localStorage.getItem(key)
@@ -16,16 +16,84 @@ export default function useLocalStorage(key, defaultValue) {
     //fikrst login data then first update then download 
     //here post or put
    // fetch()
-  //  fetch('http://localhost:3001/todo/login', {
-  //   method: 'POST', // or 'PUT'
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  //   body: JSON.stringify({
-  //     "name":"erid3gfg",
-  //     "password":"12345p[po6"
-  //   }),
-  // })
+   
+   d++
+  
+ //  let budget= localStorage.getItem("budgets")
+  
+   //let expenses= localStorage.getItem("expenses")
+
+   //value becomes local storage so first fethcs then post 
+
+   //console.log(key,value)
+   //console.log(d)
+
+   if(d>=3){
+   if(key=="budgets"){
+    console.log("budging")
+    fetch('/todo/update', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        "name":"erick2",
+        "password":"123",
+      "info":[value,[]]//sacar del local host
+     
+      }),
+    }).then(res=>res.json()).then(
+      (res)=>{
+       // console.log(res.info)
+   })
+  }else{
+    console.log("Expending")
+    fetch('/todo/update', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        "name":"erick2",
+        "password":"123",
+      "info":[[],value]//sacar del local host
+     
+      }),
+    }).then(res=>res.json()).then(
+      (res)=>{
+     //   console.log(res.info)
+   })
+  }}
+
+
+if(d==1){
+  fetch('/todo/login', {
+    method: 'POST', // or 'PUT'
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      "name":"erick2",
+      "password":"123"
+    }),
+  }).then(res=>res.json()).then(
+    (res)=>{
+      //res is also name and pass
+    //  value.push(res)
+
+      //here problem maybe first fetch then this bc u k
+    //  console.log(res ,"double isn")
+    
+   
+    localStorage.setItem("expenses", JSON.stringify(res.info[1]))
+    localStorage.setItem("budgets", JSON.stringify(res.info[0]))
+    //setValue(JSON.stringify(res.info))
+  //return [value, setValue]
+
+})
+
+}
+   
     //https://api.nationalize.io/?name=${yo}
 
 
@@ -46,9 +114,10 @@ export default function useLocalStorage(key, defaultValue) {
 
 
 //double array ffetchs then 0 budget set local 1 expenses set local + current valiu
-console.log(key,value)
+
+//console.log(key,value)
     localStorage.setItem(key, JSON.stringify(value))
   }, [key, value])
-
+//return delay xd
   return [value, setValue]
 }

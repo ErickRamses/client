@@ -13,6 +13,9 @@ export function useBudgets() {
 export const BudgetsProvider = ({ children }) => {
   const [budgets, setBudgets] = useLocalStorage("budgets", [])
   const [expenses, setExpenses] = useLocalStorage("expenses", [])
+//set expenses use and budget
+
+
 
 
   function getBudgetExpenses(budgetId) {
