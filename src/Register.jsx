@@ -1,15 +1,17 @@
 import React from 'react'
-import "./styleLogin.css"
 import { useState } from 'react'
+import "./styleLogin.css"
 
-const Login = () => {
-  const [name, setname] = useState('')
+
+const Register = () => {
+    const [name, setname] = useState('')
 	const [password, setPassword] = useState('')
+	const [passwordr, setPasswordr] = useState('')
 
 	async function loginUser(event) {
 		event.preventDefault()
-   
-		const response = await fetch('todo/login', {
+    if(password==passwordr){    
+		const response = await fetch('/todo/register', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -23,27 +25,29 @@ const Login = () => {
 		const data = await response.json()
     
     if( data.status !="error"){
-      console.log(JSON.stringify(data.info))
-    localStorage.setItem("expenses", JSON.stringify(data.info[1]))
-    localStorage.setItem("budgets", JSON.stringify(data.info[0]))
-        alert('Login successful')
+        alert('successful')
         window.location.href = '/#/todo'
     }else{
+        alert('something went wrong')
 
-      alert('Invalid login')
+      
     }
 
-	}
+	}else{
+      alert('Passwords do not match')
+
+    }
+}
   return (
     <>
   <meta charSet="utf-8" />
   <title>Animated Login Form | CodingNepal</title>
   {/* <link rel="stylesheet" href="style.css" /> */}
   <div className="center">
-    <h1>Login</h1>
-    <form onSubmit={loginUser} >
+    <h1>Register</h1>
+    <form onSubmit={loginUser} autoComplete="off">
       <div className="txt_field">
-      <input style={{color:"white" }} 
+      <input autoComplete="off" style={{color:"white"}} minLength={3} maxLength={20}
 					value={name}
 					onChange={(e) => setname(e.target.value)}
 					type="text"
@@ -52,20 +56,31 @@ const Login = () => {
         <label>Username</label>
       </div>
       <div className="txt_field">
-      <input style={{color:"white"}}
+      <input style={{color:"white"}} minLength={5} maxLength={20} autoComplete="new-password"
 					value={password}
-					onChange={(e) => setPassword(e.target.value)} autoComplete="new-password"
+					onChange={(e) => setPassword(e.target.value)}
 					type="password"
 					
 				/>
         <span />
         <label>Password</label>
       </div>
+      <div className="txt_field">
+      <input style={{color:"white"}} minLength={5} maxLength={20}
+					value={passwordr}
+					onChange={(e) => setPasswordr(e.target.value)}
+					type="password"
+					
+				/>
+        <span />
+        <label>Repeat Password </label>
+      </div>
+      
       {/* <div className="pass">Forgot Password?</div> */}
       <br></br>
       <input type="submit" defaultValue="Login"  />
       <div className="signup_link">
-       <a style={{fontSize:"1.3em"}} href="#/register">Signup</a>
+       <a style={{fontSize:"1.3em"}} href="/">Login</a>
       </div>
     </form>
   </div>
@@ -74,4 +89,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Register

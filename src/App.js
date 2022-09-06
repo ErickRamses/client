@@ -24,7 +24,7 @@ function App() {
   }
 
   return (
-    <div style={{backgroundColor:"#2C3333",minHeight:"100vh",marginTop:"0px"}}>
+    <div style={{backgroundColor:"rgb(27, 27, 27)",minHeight:"100vh",marginTop:"0px"}}>
       <Container className="" style={{paddingTop:"15px",}}>
         <Stack direction="horizontal" gap="2" className="mb-4">
           <h1 className="me-auto" style={{color:"white"}}>Budgets</h1>
