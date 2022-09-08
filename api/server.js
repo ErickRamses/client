@@ -77,14 +77,14 @@ app.post("/todo/login", async(req,res)=>{
     //     const result= await Todo.findByIdAndDelete(req.params.id)
     //     res.json(result)
     // })
-    app.get("/todos",async (req,res)=>{
+    // app.get("/todos",async (req,res)=>{
            
-        //here body is name contra o no eso se hace en login
-        const todos =await Todo.find();
-        const todos1=await Info.find();
+    //     //here body is name contra o no eso se hace en login
+    //     const todos =await Todo.find();
+    //     const todos1=await Info.find();
       
-        res.send(todos1)
-    })
+    //     res.send(todos1)
+    // })
     
     app.post("/todo/update", async(req,res)=>{
         //here update to collection model info

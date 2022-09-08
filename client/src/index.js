@@ -11,7 +11,7 @@ import {
   Route,
   HashRouter,
 } from "react-router-dom";
-//react router+ routes+  page=jsx+=convert+=css+=deb++ login{post{knowhow+,doit+}+,redirect+,redirect app+}+  register{jsx+,put+,redirecttolog+,frontend+,fronyend log+,regist+}+ cokie{kwon,do,disconect,conect,} connect         
+//react router+ routes+  page=jsx+=convert+=css+=deb++ login{post{knowhow+,doit+}+,redirect+,redirect app+}+  register{jsx+,put+,redirecttolog+,frontend+,fronyend log+,regist+}+ cokie{kwon+,server know+,anki gus+,do some backend{think+,login, update},disconect,conect,} connect         
 ReactDOM.render(
   <React.StrictMode>
     <BudgetsProvider>
