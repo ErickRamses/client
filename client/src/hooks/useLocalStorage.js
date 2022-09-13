@@ -28,6 +28,16 @@ export default function useLocalStorage(key, defaultValue) {
    //console.log(key,value)
    //console.log(d)
 
+    //maybe if 1 then set value
+    if(d==1){
+      if(key=="budgets"){
+        setValue([localStorage.getItem("budgets")])
+      }else{
+        setValue([localStorage.getItem("expenses")])
+      //me an advanment i gues  
+      }
+    }
+
    if(d>=3){
    if(key=="budgets"){
     console.log("budging")
