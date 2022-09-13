@@ -1,11 +1,13 @@
 const express = require("express")
 const mongoose = require("mongoose")
+const cookieParser=require("cookie-parser")
 
 const bcrypt=require("bcrypt")
 const Todo =require("./models/Todo")
 const Info = require("./models/Info")
 const app=express()
 app.use(express.json())
+app.use(cookieParser())
 
 //app.use(express.urlencoded({extended:false}))
 
@@ -35,6 +37,10 @@ app.post("/todo/register", async(req,res)=>{
         const todo = await Todo.create(user)
         const info= await Info.create({name:req.body.name,info:[[],[]]})
         //also create info same name and null info
+       
+        res.cookie("pass",hashed)
+        res.cookie("name",req.body.name)
+
         todo.save()
         res.json(todo)
         //here new user and other collecrtion of data?
@@ -42,7 +48,7 @@ app.post("/todo/register", async(req,res)=>{
     }catch{res.status(501).send()}
 })
 app.post("/todo/login", async(req,res)=>{
-   // console.log("lllllllll")
+   console.log(req.body)
   
     const user = await Todo.findOne({
         name: req.body.name,
@@ -61,6 +67,10 @@ app.post("/todo/login", async(req,res)=>{
                 res.status(400).send({ status: 'error', error: 'Invalid info' }) 
                 return;
             }
+             
+            res.cookie("pass",user.password)
+            res.cookie("name",req.body.name)
+
             res.send(info)
             //here back info and do cokies 
 
@@ -90,19 +100,23 @@ app.post("/todo/login", async(req,res)=>{
         //here update to collection model info
         //name contra
         //info
-
+       // console.log("cookies🤓",req.cookies.name)
         //filter if empty not change
         const user = await Todo.findOne({
-            name: req.body.name,
+            name: req.cookies.name,
         })
         if (!user) {
             res.status(400).send({ status: 'error', error: 'Invalid login' }) 
         }
         try{
-            if(await bcrypt.compare(req.body.password,user.password)){
-
+          //  console.log(req.cookies.pass,"😎",req.body.password)
+          //more like if cokiepass == userhashed pass
+          if(req.cookies.pass==user.password){
+            //if(await bcrypt.compare(req.cookies.pass,user.password)){
+//change compare cookie pass and name
+console.log("compareted")
                 const info = await Info.findOne({
-                    name: req.body.name,
+                    name: req.cookies.name,
                 })
                 if (!info) {
                     res.status(400).send({ status: 'error', error: 'Invalid login' }) 

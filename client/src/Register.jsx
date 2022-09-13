@@ -21,10 +21,15 @@ const Register = () => {
 				password,
 			}),
 		})
+ //   localStorage.setItem("expenses", [])
+//  localStorage.setItem("budgets", [])
+    localStorage.clear("budgets")
+    localStorage.clear("expenses")
 
 		const data = await response.json()
     
     if( data.status !="error"){
+
         alert('successful')
         window.location.href = '/#/todo'
     }else{
@@ -49,7 +54,8 @@ const Register = () => {
       <div className="txt_field">
       <input autoComplete="off" style={{color:"white"}} minLength={3} maxLength={20}
 					value={name}
-					onChange={(e) => setname(e.target.value)}
+					onChange={(e) => {
+            setname(e.target.value)}}
 					type="text"
 				/>
         <span />

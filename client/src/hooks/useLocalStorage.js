@@ -37,8 +37,8 @@ export default function useLocalStorage(key, defaultValue) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        "name":"erick2",
-        "password":"123",
+      //  "name":"erick2",
+      //  "password":"123",
       "info":[value,[]]//sacar del local host
      
       }),
@@ -54,8 +54,8 @@ export default function useLocalStorage(key, defaultValue) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        "name":"erick2",
-        "password":"123",
+      //  "name":"erick2",
+      //  "password":"123",
       "info":[[],value]//sacar del local host
      
       }),
@@ -66,7 +66,7 @@ export default function useLocalStorage(key, defaultValue) {
   }}
 
 
-if(d==1){
+if(false){//d==1){
   fetch('/todo/login', {
     method: 'POST', // or 'PUT'
     headers: {
@@ -114,6 +114,8 @@ if(d==1){
 
 
 //double array ffetchs then 0 budget set local 1 expenses set local + current valiu
+
+//f
 
 //console.log(key,value)
     localStorage.setItem(key, JSON.stringify(value))

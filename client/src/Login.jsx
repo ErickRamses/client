@@ -23,7 +23,7 @@ const Login = () => {
 		const data = await response.json()
     
     if( data.status !="error"){
-      console.log(JSON.stringify(data.info))
+   //   console.log(JSON.stringify(data.info))
     localStorage.setItem("expenses", JSON.stringify(data.info[1]))
     localStorage.setItem("budgets", JSON.stringify(data.info[0]))
         alert('Login successful')

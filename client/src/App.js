@@ -6,18 +6,29 @@ import ViewExpensesModal from "./components/ViewExpensesModal"
 import BudgetCard from "./components/BudgetCard"
 import UncategorizedBudgetCard from "./components/UncategorizedBudgetCard"
 import TotalBudgetCard from "./components/TotalBudgetCard"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "./contexts/BudgetsContext"
+//import { useBudgets } from "../contexts/BudgetsContext"
 
 function App() {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false)
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false)
   const [viewExpensesModalBudgetId, setViewExpensesModalBudgetId] = useState()
   const [addExpenseModalBudgetId, setAddExpenseModalBudgetId] = useState()
-  const { budgets, getBudgetExpenses } = useBudgets()
+  const { budgets,setBudgets, getBudgetExpenses } = useBudgets()
 
   //load after fetch
-
+  const { addBudget } = useBudgets()
+useEffect(()=>{
+ // setBudgets()
+  addBudget({
+    name: "primer",
+    max: parseFloat(10),
+  })
+  console.log(budgets)
+//make wait the budgets
+},[])
+  //test
   function openAddExpenseModal(budgetId) {
     setShowAddExpenseModal(true)
     setAddExpenseModalBudgetId(budgetId)

@@ -56,6 +56,7 @@ export const BudgetsProvider = ({ children }) => {
     <BudgetsContext.Provider
       value={{
         budgets,
+        setBudgets,
         expenses,
         getBudgetExpenses,
         addExpense,
