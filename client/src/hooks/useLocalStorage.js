@@ -11,7 +11,18 @@ export default function useLocalStorage(key, defaultValue) {
       return defaultValue
     }
   })
-  
+  // useEffect(()=>{
+  //     if(key=="budgets"){
+  //  //    console.log(value,"🍄", JSON.parse(localStorage.getItem("budgets")))
+  //      // if(localStorage.getItem("budgets")==null){localStorage.setItem("budgets",[])}
+  //       setValue(JSON.parse(localStorage.getItem("budgets")))
+  //     }else{
+  //      // if(localStorage.getItem("expenses")==null){localStorage.setItem("expenses",[])}
+  //       setValue(JSON.parse(localStorage.getItem("expenses")))
+  //       //setValue([localStorage.getItem("expenses")])
+  //     //me an advanment i gues  
+  //     }
+  // },[])
   useEffect(() => {
     //fikrst login data then first update then download 
     //here post or put
@@ -29,14 +40,20 @@ export default function useLocalStorage(key, defaultValue) {
    //console.log(d)
 
     //maybe if 1 then set value
-    if(d==1){
-      if(key=="budgets"){
-        setValue([localStorage.getItem("budgets")])
-      }else{
-        setValue([localStorage.getItem("expenses")])
-      //me an advanment i gues  
-      }
-    }
+    // if(d<3){
+    //   if(key=="budgets"){
+    //    console.log(value,"🍄", JSON.parse(localStorage.getItem("budgets")))
+    //    // if(localStorage.getItem("budgets")==null){localStorage.setItem("budgets",[])}
+    //     setValue(JSON.parse(localStorage.getItem("budgets")))
+    //   }else{
+    //    // if(localStorage.getItem("expenses")==null){localStorage.setItem("expenses",[])}
+
+    //     setValue(JSON.parse(localStorage.getItem("expenses")))
+    //     //setValue([localStorage.getItem("expenses")])
+    //   //me an advanment i gues  
+    //   }
+    // }
+    //useeffetct fuchjhjksdhkjhlkjhflkjsadhfkljasgdhfkjasdglkjfhsdkjhfgksdljhgnmd
 
    if(d>=3){
    if(key=="budgets"){

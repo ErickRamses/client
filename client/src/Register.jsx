@@ -21,17 +21,19 @@ const Register = () => {
 				password,
 			}),
 		})
- //   localStorage.setItem("expenses", [])
-//  localStorage.setItem("budgets", [])
-    localStorage.clear("budgets")
-    localStorage.clear("expenses")
-
+    //  localStorage.clear("budgets")
+    //  localStorage.clear("expenses")
+    //not clear reasing to []
 		const data = await response.json()
     
     if( data.status !="error"){
+      localStorage.setItem("expenses", [{}])
+   localStorage.setItem("budgets", [{}])
+   setTimeout(()=>{
+    alert('Login successful')
+      window.location.href = '/#/todo'
 
-        alert('successful')
-        window.location.href = '/#/todo'
+  },500)  
     }else{
         alert('something went wrong')
 

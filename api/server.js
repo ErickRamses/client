@@ -106,7 +106,7 @@ app.post("/todo/login", async(req,res)=>{
             name: req.cookies.name,
         })
         if (!user) {
-            res.status(400).send({ status: 'error', error: 'Invalid login' }) 
+            res.status(400).send({ status: 'error', error: 'no user' }) 
         }
         try{
           //  console.log(req.cookies.pass,"😎",req.body.password)
@@ -119,11 +119,11 @@ console.log("compareted")
                     name: req.cookies.name,
                 })
                 if (!info) {
-                    res.status(400).send({ status: 'error', error: 'Invalid login' }) 
+                    res.status(400).send({ status: 'error', error: 'could not find info' }) 
                     return;
                 }
                 if (!req.body.info) {
-                    res.status(400).send({ status: 'error', error: 'Invalid login' }) 
+                    res.status(400).send({ status: 'error', error: 'no info' }) 
                     return;
                 }
 

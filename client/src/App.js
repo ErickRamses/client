@@ -19,15 +19,16 @@ function App() {
 
   //load after fetch
   const { addBudget } = useBudgets()
-useEffect(()=>{
- // setBudgets()
-  addBudget({
-    name: "primer",
-    max: parseFloat(10),
-  })
-  console.log(budgets)
-//make wait the budgets
-},[])
+// useEffect(()=>{
+//  // setBudgets()
+//   addBudget({
+//     name: "primer",
+//     max: parseFloat(10),
+//   })
+//   console.log(budgets)
+// //make wait the budgets
+// //lets doit the hard way meeh
+// },[])
   //test
   function openAddExpenseModal(budgetId) {
     setShowAddExpenseModal(true)

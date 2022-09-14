@@ -11,7 +11,7 @@ body{
   padding: 0;
   background: linear-gradient(120deg,hsl(202, 65%, 9%), hsl(283, 43%, 30%));
   height: 100vh;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .center{
   position: absolute;

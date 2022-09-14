@@ -14,9 +14,13 @@ export const BudgetsProvider = ({ children }) => {
   const [budgets, setBudgets] = useLocalStorage("budgets", [])
   const [expenses, setExpenses] = useLocalStorage("expenses", [])
 //set expenses use and budget
+if(localStorage.getItem("budgets")==null){localStorage.setItem("budgets",[])}
+      setBudgets(JSON.parse(localStorage.getItem("budgets")))
+     console.log("😶")
+ if(localStorage.getItem("expenses")==null){localStorage.setItem("expenses",[])}
+      setExpenses(JSON.parse(localStorage.getItem("expenses")))
 
-
-
+//here up a useeffect and add them
 
   function getBudgetExpenses(budgetId) {
     return expenses.filter(expense => expense.budgetId === budgetId)
