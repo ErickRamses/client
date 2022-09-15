@@ -57,15 +57,14 @@ export default function useLocalStorage(key, defaultValue) {
 
    if(d>=3){
    if(key=="budgets"){
-    console.log("budging")
+   // console.log("budging")
     fetch('/todo/update', {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-      //  "name":"erick2",
-      //  "password":"123",
+     
       "info":[value,[]]//sacar del local host
      
       }),
@@ -74,15 +73,14 @@ export default function useLocalStorage(key, defaultValue) {
        // console.log(res.info)
    })
   }else{
-    console.log("Expending")
+  //  console.log("Expending")
     fetch('/todo/update', {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-      //  "name":"erick2",
-      //  "password":"123",
+  
       "info":[[],value]//sacar del local host
      
       }),

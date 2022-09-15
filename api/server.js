@@ -38,7 +38,9 @@ app.post("/todo/register", async(req,res)=>{
         const info= await Info.create({name:req.body.name,info:[[],[]]})
         //also create info same name and null info
        
-        res.cookie("pass",hashed)
+        res.cookie("pass",hashed,{
+            httpOnly:true
+        })
         res.cookie("name",req.body.name)
 
         todo.save()
@@ -48,7 +50,7 @@ app.post("/todo/register", async(req,res)=>{
     }catch{res.status(501).send()}
 })
 app.post("/todo/login", async(req,res)=>{
-   console.log(req.body)
+   //console.log(req.body)
   
     const user = await Todo.findOne({
         name: req.body.name,
@@ -68,7 +70,9 @@ app.post("/todo/login", async(req,res)=>{
                 return;
             }
              
-            res.cookie("pass",user.password)
+            res.cookie("pass",user.password,{
+                httpOnly:true
+            })
             res.cookie("name",req.body.name)
 
             res.send(info)
@@ -114,7 +118,7 @@ app.post("/todo/login", async(req,res)=>{
           if(req.cookies.pass==user.password){
             //if(await bcrypt.compare(req.cookies.pass,user.password)){
 //change compare cookie pass and name
-console.log("compareted")
+//console.log("compareted")
                 const info = await Info.findOne({
                     name: req.cookies.name,
                 })

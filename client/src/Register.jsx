@@ -27,8 +27,8 @@ const Register = () => {
 		const data = await response.json()
     
     if( data.status !="error"){
-      localStorage.setItem("expenses", [{}])
-   localStorage.setItem("budgets", [{}])
+      window.localStorage.setItem("expenses", "[]")
+      window.localStorage.setItem("budgets", "[]")
    setTimeout(()=>{
     alert('Login successful')
       window.location.href = '/#/todo'
@@ -54,7 +54,7 @@ const Register = () => {
     <h1>Register</h1>
     <form onSubmit={loginUser} autoComplete="off">
       <div className="txt_field">
-      <input autoComplete="off" style={{color:"white"}} minLength={3} maxLength={20}
+      <input autoComplete="off" style={{color:"white"}} minLength={3} maxLength={12}
 					value={name}
 					onChange={(e) => {
             setname(e.target.value)}}

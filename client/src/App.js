@@ -19,17 +19,57 @@ function App() {
 
   //load after fetch
   const { addBudget } = useBudgets()
-// useEffect(()=>{
-//  // setBudgets()
-//   addBudget({
-//     name: "primer",
-//     max: parseFloat(10),
-//   })
-//   console.log(budgets)
-// //make wait the budgets
-// //lets doit the hard way meeh
-// },[])
+  const { addExpense } = useBudgets()
+  const { deleteBudget } = useBudgets()
+  const { deleteExpense } = useBudgets()
+
+  
+
+useEffect(()=>{
+    //console.log(budgets)
+   if(window.localStorage.getItem("budgets")=="[]" && window.localStorage.getItem("expenses")=="[]"){
+ //   console.log("😴")
+    deleteBudget({
+      id:1,
+      all:true
+    })
+   deleteExpense({id:1,all:true})
+   // console.log("🤑")
+
+    return
+   }
+    if(window.localStorage.getItem("budgets")==null){
+      window.localStorage.setItem("budgets","[]")}   
+    let budgets=JSON.parse(window.localStorage.getItem("budgets"))
+    budgets.forEach((elem)=>{
+      //console.log(elem)
+      addBudget({
+        name: elem.name,
+        max: parseFloat(elem.max),
+        idOld:elem.id
+      })  
+    })
+  if(window.localStorage.getItem("expenses")==null){window.localStorage.setItem("expenses","[]")}
+  let expenses=JSON.parse(window.localStorage.getItem("expenses"))
+  expenses.forEach((elem)=>{
+   // console.log(elem)
+          addExpense({ 
+            description:elem.description,
+            amount:elem.amount,
+            budgetId:elem.budgetId })
+  }) 
+ // console.log(budgets)
+//make wait the budgets
+//lets doit the hard way meeh
+},[])
   //test
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
+
+
   function openAddExpenseModal(budgetId) {
     setShowAddExpenseModal(true)
     setAddExpenseModalBudgetId(budgetId)
@@ -39,7 +79,8 @@ function App() {
     <div style={{backgroundColor:"rgb(27, 27, 27)",minHeight:"100vh",marginTop:"0px"}}>
       <Container className="" style={{paddingTop:"15px",}}>
         <Stack direction="horizontal" gap="2" className="mb-4">
-          <h1 className="me-auto" style={{color:"white"}}>Budgets</h1>
+          <h1 className="me-auto" style={{color:"white"}}>{getCookie("name")}</h1>
+          
           <Button variant="secondary" onClick={() => setShowAddBudgetModal(true)}>
             Add Budget
           </Button>
@@ -47,6 +88,7 @@ function App() {
             Add Expense
           </Button> */}
         </Stack>
+        <h3 className="me-auto" style={{color:"white",marginTop:"-25px",marginBottom:"10px"}}>Budgets:</h3>
         <div
           style={{
             display: "grid",

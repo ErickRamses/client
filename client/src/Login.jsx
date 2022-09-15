@@ -24,8 +24,8 @@ const Login = () => {
     
     if( data.status !="error"){
    //   console.log(JSON.stringify(data.info))
-    localStorage.setItem("expenses", JSON.stringify(data.info[1]))
-    localStorage.setItem("budgets", JSON.stringify(data.info[0]))
+   window.localStorage.setItem("expenses", JSON.stringify(data.info[1]))
+    window.localStorage.setItem("budgets", JSON.stringify(data.info[0]))
       setTimeout(()=>{
         alert('Login successful')
           window.location.href = '/#/todo'
@@ -68,7 +68,9 @@ const Login = () => {
       <br></br>
       <input type="submit" defaultValue="Login"  />
       <div className="signup_link">
-       <a style={{fontSize:"1.3em"}} href="#/register">Signup</a>
+       <a style={{fontSize:"1.3em"}} href="#/register">Signup</a><br></br>
+       <a style={{fontSize:"1em"}} href="#/todo">anonymous</a>
+
       </div>
     </form>
   </div>

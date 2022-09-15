@@ -14,11 +14,22 @@ export const BudgetsProvider = ({ children }) => {
   const [budgets, setBudgets] = useLocalStorage("budgets", [])
   const [expenses, setExpenses] = useLocalStorage("expenses", [])
 //set expenses use and budget
-if(localStorage.getItem("budgets")==null){localStorage.setItem("budgets",[])}
-      setBudgets(JSON.parse(localStorage.getItem("budgets")))
-     console.log("😶")
- if(localStorage.getItem("expenses")==null){localStorage.setItem("expenses",[])}
-      setExpenses(JSON.parse(localStorage.getItem("expenses")))
+// useEffect(()=>{
+//   setTimeout(()=>{
+
+//     console.log(budgets)
+//     console.log("😐",JSON.parse(window.localStorage.getItem("budgets")))
+//     if(window.localStorage.getItem("budgets")==null){window.localStorage.setItem("budgets","[]")}
+    
+//          setBudgets(JSON.parse(window.localStorage.getItem("budgets")))
+    
+//       if(window.localStorage.getItem("expenses")==null){window.localStorage.setItem("expenses","[]")}
+//            setExpenses(JSON.parse(window.localStorage.getItem("expenses")))
+
+
+//   },500)
+
+// },[])
 
 //here up a useeffect and add them
 
@@ -27,34 +38,54 @@ if(localStorage.getItem("budgets")==null){localStorage.setItem("budgets",[])}
   }
   function addExpense({ description, amount, budgetId }) {
     setExpenses(prevExpenses => {
+       if (prevExpenses.find(expenses => expenses.description === description && expenses.budgetId === budgetId)) {
+        return prevExpenses
+      }
       return [...prevExpenses, { id: uuidV4(), description, amount, budgetId }]
     })
   }
-  function addBudget({ name, max }) {
+  function addBudget({ name, max ,idOld}) {
     setBudgets(prevBudgets => {
       if (prevBudgets.find(budget => budget.name === name)) {
         return prevBudgets
       }
-      return [...prevBudgets, { id: uuidV4(), name, max }]
+      if(idOld==undefined){
+        return [...prevBudgets, { id: uuidV4(), name, max }]
+      }else{
+        return [...prevBudgets, { id: idOld, name, max }]
+
+      }
     })
   }
-  function deleteBudget({ id }) {
+  function deleteBudget({ id ,all}) {
+
+    console.log(id,all)
     setExpenses(prevExpenses => {
       return prevExpenses.map(expense => {
         if (expense.budgetId !== id) return expense
         return { ...expense, budgetId: UNCATEGORIZED_BUDGET_ID }
       })
     })
+    if(all==undefined){
+      //console.log("🐵")
 
-    setBudgets(prevBudgets => {
-      return prevBudgets.filter(budget => budget.id !== id)
-    })
+      setBudgets(prevBudgets => {
+        return prevBudgets.filter(budget => budget.id !== id)
+      })
+    }else{
+      //console.log("🤓")
+      setBudgets([])
+    }
   }
-  function deleteExpense({ id }) {
+  function deleteExpense({ id ,all}) {
+    if(all==undefined){
     setExpenses(prevExpenses => {
       return prevExpenses.filter(expense => expense.id !== id)
     })
-  }
+  }else{
+    //console.log("🤓expens")
+    setExpenses([])
+  }}
 
   return (
     <BudgetsContext.Provider
