@@ -26,11 +26,11 @@ const Login = () => {
    //   console.log(JSON.stringify(data.info))
    window.localStorage.setItem("expenses", JSON.stringify(data.info[1]))
     window.localStorage.setItem("budgets", JSON.stringify(data.info[0]))
-      setTimeout(()=>{
+   
         alert('Login successful')
           window.location.href = '/#/todo'
 
-      },500)  
+      
     }else{
 
       alert('Invalid login')

@@ -29,11 +29,11 @@ const Register = () => {
     if( data.status !="error"){
       window.localStorage.setItem("expenses", "[]")
       window.localStorage.setItem("budgets", "[]")
-   setTimeout(()=>{
-    alert('Login successful')
+ 
+    alert('successful')
       window.location.href = '/#/todo'
 
-  },500)  
+  
     }else{
         alert('something went wrong')
 

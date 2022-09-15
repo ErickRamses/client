@@ -137,6 +137,7 @@ useEffect(()=>{
         budgetId={viewExpensesModalBudgetId}
         handleClose={() => setViewExpensesModalBudgetId()}
       />
+
     </div>
   )
 }
