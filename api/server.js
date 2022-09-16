@@ -10,31 +10,57 @@ app.use(express.json())
 app.use(cookieParser())
 
 //app.use(express.urlencoded({extended:false}))
+// const { MongoClient, ServerApiVersion } = require('mongodb');
+// const uri = "mongodb+srv://Erick:z.2B7FWMyXH.8an@cluster0.itibvhy.mongodb.net/?retryWrites=true&w=majority";
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+// client.connect(err => {
+//   const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   client.close();
+// });
 
-mongoose.connect('mongodb://127.0.0.1:27017/mern', {
+mongoose.connect('mongodb+srv://Erick:z.2B7FWMyXH.8an@cluster0.itibvhy.mongodb.net/?retryWrites=true&w=majority', {
 	useNewUrlParser: true, 
 	useUnifiedTopology: true 
 })
 .then(() => {  
-    console.log("Connected to MongoDB")})
+    console.log("Connected to MongoDB")
+   
+
+})
 .catch(console.error);
 
 //fisrt register then login fetch data then sycn(post request name contra&data remplse) r l u
 
 
 app.post("/todo/register", async(req,res)=>{
+    console.log("💀")
     try{
+        const infor= await Info.create({name:"req.body.name",info:[[],[]]})
+        infor.save()
+        // const newUser = new User({
+        //     username: "admin",
+        //     email: "admin@localhost",
+        //   });
+        //lets use new user
+        console.log("👽")
+
         const user1 = await Todo.findOne({
             name: req.body.name,
         })
+       // console.log("👽")
+
         if (user1) {
             res.status(400).send({ status: 'error', error: 'Invalid name' }) 
-            return;
-        
+            return;          
         }
+   
         const hashed = await bcrypt.hash(req.body.password,10)
         const user ={name:req.body.name,password:hashed}
+
         const todo = await Todo.create(user)
+ 
+        
         const info= await Info.create({name:req.body.name,info:[[],[]]})
         //also create info same name and null info
        
@@ -47,7 +73,10 @@ app.post("/todo/register", async(req,res)=>{
         res.json(todo)
         //here new user and other collecrtion of data?
         //or update data in 
-    }catch{res.status(501).send()}
+    }catch{
+       // console.log("👽")
+        
+        res.status(501).send()}
 })
 app.post("/todo/login", async(req,res)=>{
    //console.log(req.body)
