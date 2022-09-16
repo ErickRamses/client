@@ -58,8 +58,8 @@ export const BudgetsProvider = ({ children }) => {
     })
   }
   function deleteBudget({ id ,all}) {
-
-    console.log(id,all)
+ 
+   // onsole.log(id,all)
     setExpenses(prevExpenses => {
       return prevExpenses.map(expense => {
         if (expense.budgetId !== id) return expense

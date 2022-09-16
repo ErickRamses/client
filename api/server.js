@@ -11,15 +11,20 @@ app.use(cookieParser())
 
 //app.use(express.urlencoded({extended:false}))
 // const { MongoClient, ServerApiVersion } = require('mongodb');
-// const uri = "mongodb+srv://Erick:z.2B7FWMyXH.8an@cluster0.itibvhy.mongodb.net/?retryWrites=true&w=majority";
+// const uri = "mongodb+srv://Erick:@cluster0.itibvhy.mongodb.net/?retryWrites=true&w=majority";
 // const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 // client.connect(err => {
-//   const collection = client.db("test").collection("devices");
+//   const collection = client.db("Cluster0").collection("devices");
+//   const newUser = new Info({name:"req.body.name",info:[[],[]]})
+//   console.log("adsd👽ss")
+//   newUser.save();
+   
 //   // perform actions on the collection object
 //   client.close();
 // });
+require("dotenv").config();
 
-mongoose.connect('mongodb+srv://Erick:z.2B7FWMyXH.8an@cluster0.itibvhy.mongodb.net/?retryWrites=true&w=majority', {
+mongoose.connect(`mongodb+srv://Erick:${process.env.Key}@cluster0.itibvhy.mongodb.net/?retryWrites=true&w=majority`, {
 	useNewUrlParser: true, 
 	useUnifiedTopology: true 
 })
@@ -34,22 +39,15 @@ mongoose.connect('mongodb+srv://Erick:z.2B7FWMyXH.8an@cluster0.itibvhy.mongodb.n
 
 
 app.post("/todo/register", async(req,res)=>{
-    console.log("💀")
+    
     try{
-        const infor= await Info.create({name:"req.body.name",info:[[],[]]})
-        infor.save()
-        // const newUser = new User({
-        //     username: "admin",
-        //     email: "admin@localhost",
-        //   });
-        //const admin = await newUser.save();
-        //lets use new user
-        console.log("👽")
-
+        //const infor= await Info.create({name:"req.body.name",info:[[],[]]})
+       // infor.save()
+    
         const user1 = await Todo.findOne({
             name: req.body.name,
         })
-       // console.log("👽")
+       // onsole.log("👽")
 
         if (user1) {
             res.status(400).send({ status: 'error', error: 'Invalid name' }) 
@@ -74,8 +72,9 @@ app.post("/todo/register", async(req,res)=>{
         res.json(todo)
         //here new user and other collecrtion of data?
         //or update data in 
-    }catch{
-       // console.log("👽")
+    }catch(err){
+
+        console.log(err)
         
         res.status(501).send()}
 })
