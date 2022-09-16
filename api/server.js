@@ -42,6 +42,7 @@ app.post("/todo/register", async(req,res)=>{
         //     username: "admin",
         //     email: "admin@localhost",
         //   });
+        //const admin = await newUser.save();
         //lets use new user
         console.log("👽")
 
