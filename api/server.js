@@ -24,7 +24,7 @@ app.use(cookieParser())
 // });
 require("dotenv").config();
 
-mongoose.connect(`mongodb+srv://Erick:${process.env.Key}@cluster0.itibvhy.mongodb.net/?retryWrites=true&w=majority`, {
+mongoose.connect(`mongodb+srv://Erick:${process.env.KEY}@cluster0.itibvhy.mongodb.net/?retryWrites=true&w=majority`, {
 	useNewUrlParser: true, 
 	useUnifiedTopology: true 
 })

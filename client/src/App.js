@@ -26,6 +26,7 @@ function App() {
   
 
 useEffect(()=>{
+  document.title = "Mern App"
     //console.log(budgets)
    if(window.localStorage.getItem("budgets")=="[]" && window.localStorage.getItem("expenses")=="[]"){
  //   console.log("😴")

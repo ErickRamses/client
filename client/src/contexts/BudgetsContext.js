@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext,  } from "react"
 import { v4 as uuidV4 } from "uuid"
 import useLocalStorage from "../hooks/useLocalStorage"
 
@@ -49,7 +49,7 @@ export const BudgetsProvider = ({ children }) => {
       if (prevBudgets.find(budget => budget.name === name)) {
         return prevBudgets
       }
-      if(idOld==undefined){
+      if(idOld===undefined){
         return [...prevBudgets, { id: uuidV4(), name, max }]
       }else{
         return [...prevBudgets, { id: idOld, name, max }]
@@ -66,7 +66,7 @@ export const BudgetsProvider = ({ children }) => {
         return { ...expense, budgetId: UNCATEGORIZED_BUDGET_ID }
       })
     })
-    if(all==undefined){
+    if(all===undefined){
       //console.log("🐵")
 
       setBudgets(prevBudgets => {
@@ -78,7 +78,7 @@ export const BudgetsProvider = ({ children }) => {
     }
   }
   function deleteExpense({ id ,all}) {
-    if(all==undefined){
+    if(all===undefined){
     setExpenses(prevExpenses => {
       return prevExpenses.filter(expense => expense.id !== id)
     })
