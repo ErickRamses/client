@@ -2,10 +2,12 @@ const express = require("express")
 const mongoose = require("mongoose")
 const cookieParser=require("cookie-parser")
 
+const cors = require("cors")
 const bcrypt=require("bcrypt")
 const Todo =require("./models/Todo")
 const Info = require("./models/Info")
 const app=express()
+app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
 
@@ -40,6 +42,11 @@ app.get("/test",(req,res)=>{
     
     res.send("yeah its working ")
 })
+app.post("/test",(req,res)=>{
+    
+    res.send("yeah its working post",req.body?.name)
+})
+
 
 app.post("/todo/register", async(req,res)=>{
     
