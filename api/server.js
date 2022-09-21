@@ -40,7 +40,7 @@ mongoose.connect(`mongodb+srv://Erick:${process.env.KEY}@cluster0.itibvhy.mongod
 //fisrt register then login fetch data then sycn(post request name contra&data remplse) r l u
 app.get("/test",(req,res)=>{
     
-    res.send("yeah its working ")
+    res.send("yeah its working 2323")
 })
 app.post("/test",(req,res)=>{
     
