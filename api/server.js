@@ -36,7 +36,10 @@ mongoose.connect(`mongodb+srv://Erick:${process.env.KEY}@cluster0.itibvhy.mongod
 .catch(console.error);
 
 //fisrt register then login fetch data then sycn(post request name contra&data remplse) r l u
-
+app.get("/test",(req,res)=>{
+    
+    res.send("yeah its working ")
+})
 
 app.post("/todo/register", async(req,res)=>{
     
@@ -195,7 +198,7 @@ app.post("/todo/login", async(req,res)=>{
 
 
 
-app.listen(3001,()=>{
+app.listen(process.env.PORT || 3001,()=>{
     console.log("listening 3001")})    
 
 

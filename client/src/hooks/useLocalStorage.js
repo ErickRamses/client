@@ -58,7 +58,7 @@ export default function useLocalStorage(key, defaultValue) {
    if(d>=3){
    if(key=="budgets"){
    // console.log("budging")
-    fetch('/todo/update', {
+    fetch('https://mernt-budget.herokuapp.com//todo/update', {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ export default function useLocalStorage(key, defaultValue) {
    })
   }else{
   //  console.log("Expending")
-    fetch('/todo/update', {
+    fetch('https://mernt-budget.herokuapp.com//todo/update', {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ export default function useLocalStorage(key, defaultValue) {
 
 
 if(false){//d==1){
-  fetch('/todo/login', {
+  fetch('https://mernt-budget.herokuapp.com//todo/login', {
     method: 'POST', // or 'PUT'
     headers: {
       'Content-Type': 'application/json',

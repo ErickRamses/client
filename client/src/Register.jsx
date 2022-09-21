@@ -11,7 +11,7 @@ const Register = () => {
 	async function loginUser(event) {
 		event.preventDefault()
     if(password==passwordr){    
-		const response = await fetch('/todo/register', {
+		const response = await fetch('https://mernt-budget.herokuapp.com//todo/register', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
